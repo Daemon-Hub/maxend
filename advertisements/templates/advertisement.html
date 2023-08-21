@@ -1,16 +1,12 @@
 {% extends 'base.html' %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  {% block title %} Объявления {% endblock %}
-</head>
-<body>
-  {% block content %}
+{% block title %} Объявление {% endblock %}
+
+{% block content %}
   <div class="container" style="margin: 50px;">
     <div class="display-2">
-      <span class="badge bg-primary">Объявление пользователя "username"</span>
+      <span class="badge bg-primary">Объявление пользователя {{ aidv.user }}</span>
     </div>
   </div>
   <div class="col offset-2">
@@ -37,8 +33,8 @@
               numquam impedit praesentium facilis amet perspiciatis facere rem magnam consectetur, nobis
               est. Qui quod fuga illum.
             </p>
-            <span>Автор: "username"</span>
-            <p class="card-text"><small class="text-muted">Размещено: "дата"</small></p>
+            <span>Автор: {{ aidv.user }}</span>
+            <p class="card-text"><small class="text-muted">Размещено: {{ aidv.created_at }}</small></p>
           </div>
         </div>
       </div>
@@ -76,5 +72,3 @@
     </nav>
   </footer>
 {% endblock %}
-</body>
-</html>

@@ -4,7 +4,11 @@ from django.contrib.auth import get_user_model
 from django.utils.html import format_html
 
 User = get_user_model()
+
+
 class Advertisement(models.Model):
+    objects = None
+
     class Meta:
         db_table = "advertisements"
 
@@ -15,7 +19,7 @@ class Advertisement(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now=True)
     user = models.ForeignKey(User, verbose_name='Пользователь', on_delete=models.CASCADE)
-    image = models.ImageField('Изображение', upload_to='advertisements/')
+    image = models.ImageField('Изображение', upload_to='advertisements/', )
 
     def __str__(self):
         return f"{self.__class__.__name__}(id={self.id}, title={self.title}, price={self.price})"

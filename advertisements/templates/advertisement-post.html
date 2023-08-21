@@ -1,12 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  {% block title %} Advertisement-post {% endblock %}
-</head>
-<body>
+{% block title %} Разместить объявление {% endblock %}
+
 {% block content %}
   <div class="row">
     <div class="col" style="margin: 50px;">
@@ -16,46 +12,11 @@
     </div>
   </div>
   <div class="container">
-    <form method="post">
-      <div class="row mb-3">
-        <div class="col">
-          <label class="col-sm-4 col-form-label offset-4">Title</label>
-          <div class="col-sm-4 offset-4 w-25">
-            <input type="text" class="form-control form-control-lg">
-          </div>
-        </div>
-      </div>
-      <div class="row mb-3">
-        <div class="col">
-          <label class="col-sm-4 col-form-label offset-4">Description</label>
-          <div class="col-sm-4 offset-4 w-25">
-              <label for="" class="form-label"></label>
-              <textarea class="form-control" name="" id="" rows="3"></textarea>
-          </div>
-        </div>
-      </div>
-      <div class="row mb-3">
-        <div class="col">
-          <label class="col-sm-4 col-form-label offset-4">Photo</label>
-          <div class="col-sm-4 offset-4 w-25">
-            <input type="file" class="form-control form-control-lg">
-          </div>
-        </div>
-      </div>
-      <div class="row mb-3">
-        <div class="col">
-          <label class="col-sm-4 col-form-label offset-4">Price</label>
-          <div class="col-sm-4 offset-4 w-25">
-            <input type="text" class="form-control form-control-lg">
-          </div>
-        </div>
-      </div>
-      <div class="row mb-3">
-        <div class="col">
-          <div class="offset-4 w-25">
-            <input type="checkbox" class="form-check-input">
-            <label class="form-check-label">Auction</label>
-          </div>
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="row mb-3 offset-sm-4">
+        <div class="col-6">
+          {{ form.as_p }}
         </div>
       </div>
       <div class="row mb-3 offset-sm-5">
@@ -66,5 +27,3 @@
     </form>
   </div>
 {% endblock %}
-</body>
-</html>
