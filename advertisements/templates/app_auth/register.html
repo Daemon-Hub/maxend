@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %} Регистрация {% endblock %}
+
+{% block content %}
+  <div class="container">
+  <div class="row">
+    <div class="col" style="margin: 50px;">
+      <div class="display-2">
+        <span class="badge bg-primary">Страница регистрации пользователя</span>
+      </div>
+    </div>
+  </div>
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="row mb-3 offset-sm-4">
+        <div class="col-6">
+          {{ form.as_p }}
+        </div>
+      </div>
+      <div class="row mb-3 offset-sm-5">
+        <div class="col">
+          <button type="submit" class="btn btn-success">Принять</button>
+        </div>
+      </div>
+    </form>
+  </div>
+{% endblock %}
+

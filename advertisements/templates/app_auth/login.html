@@ -3,6 +3,13 @@
 {% block title %} Войти {% endblock %}
 
 {% block content %}
+{% if error %}
+  <div class="col-sm-4 offset-4 w-25">
+    <div class="form-label bg-warning" style="margin: 10px">
+      {{ error }}
+    </div>
+  </div>
+{% endif %}
   <div class="container">
   <div class="row">
     <div class="col-8" style="margin: 50px;">
@@ -12,11 +19,12 @@
     </div>
   </div>
     <form method="post">
+      {% csrf_token %}
       <div class="row mb-3">
         <div class="col">
           <label class="col-sm-4 col-form-label offset-4">Username</label>
           <div class="col-sm-4 offset-4 w-25">
-            <input type="text" class="form-control form-control-lg">
+            <input name="username" type="text" class="form-control form-control-lg">
           </div>
         </div>
       </div>
@@ -24,7 +32,7 @@
         <div class="col">
           <label class="col-sm-4 col-form-label offset-4">Password</label>
           <div class="col-sm-4 offset-4 w-25">
-            <input type="password" class="form-control form-control-lg">
+            <input name="password" type="password" class="form-control form-control-lg">
           </div>
         </div>
       </div>

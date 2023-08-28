@@ -28,10 +28,10 @@ class AdvertisementForm(forms.ModelForm):
     def clean_title(self):
         import re
         title = self.cleaned_data['title']
-        reg = r"\A[\w\d\s]+[\w\d\s\?%\$№!\(\):;\.,><=]*"
+        reg = r"\A[\w\d\s]+[\w\d\s\?%\$№!-\(\):;\.,><=]*"
         if not re.fullmatch(reg, title):
             raise ValidationError(
-                "Заголовок не может содержать такие спец. символы как: ^@#^&*_+=/\|`~ и может начинатся только с буквы или цифры."
+                "Заголовок не может содержать такие спец. символы как: ^@#&*_+=/\|`~ и может начинатся только с буквы или цифры."
             )
         return title
 

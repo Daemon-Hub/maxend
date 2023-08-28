@@ -27,6 +27,7 @@
       <span style="font-weight: bold;">Разместить объявление</span>
     </a>
   </li>
+    {% if not user.is_authenticated %}
   <li class="nav-item">
     <a class="nav-link" href="{% url 'register' %}">
       <span style="font-weight: bold;">Регистрация</span>
@@ -37,16 +38,18 @@
       <span style="font-weight: bold;">Войти</span>
     </a>
   </li>
+    {% else %}
   <li class="nav-item">
     <a class="nav-link" href="{% url 'profile' %}">
       <span style="font-weight: bold;">Профиль</span>
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="#">
+    <a class="nav-link" href="{% url 'logout' %}">
       <span style="font-weight: bold;">Выйти</span>
     </a>
   </li>
+    {% endif %}
 </ul>
     {% block content %}
     {% endblock %}
