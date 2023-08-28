@@ -7,15 +7,17 @@ from .forms import RegisterForm
 
 @login_required(login_url=reverse_lazy('login'))
 def profile(request):
-	return render(request, 'app_auth/profile.html')
+	context = {'main': 'profile'}
+	return render(request, 'app_auth/profile.html', context)
 
 
 def _login(request):
+	context = {'main': 'login'}
 	if request.method == 'GET':
 		if request.user.is_authenticated:
 			return redirect('profile')
 		else:
-			return render(request, 'app_auth/login.html')
+			return render(request, 'app_auth/login.html', context)
 	username = request.POST['username']
 	password = request.POST['password']
 	print(username, password)
@@ -23,7 +25,8 @@ def _login(request):
 	if user is not None:
 		login(request, user)
 		return redirect('profile')
-	return render(request, 'app_auth/login.html', {'error':'Пользователь не найден(('})
+	context['error'] = 'Пользователь не найден(('
+	return render(request, 'app_auth/login.html', context)
 
 
 def _logout(request):
@@ -46,5 +49,5 @@ def register(request):
 			return redirect('index')
 	else:
 		form = RegisterForm()
-
-	return render(request, 'app_auth/register.html', {'form': form})
+	context = {'form': form, 'main': 'register'}
+	return render(request, 'app_auth/register.html', context)

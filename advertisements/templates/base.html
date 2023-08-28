@@ -14,33 +14,34 @@
 <body>
 <ul class="nav nav-pills sticky-top bg-white nav-fill">
   <li class="nav-item">
-    <a class="nav-link active" aria-current="page" href="{% url 'index' %}">
+    <a class="nav-link {% if main == 'index' %}active{% endif %}" aria-current="page" href="{% url 'index' %}">
       <span style="font-weight: bold;">Главная</span>
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="{% url 'top-sellers' %}"><span style="font-weight: bold;">Топ продавцов</span>
+    <a class="nav-link {% if main == 'top' %}active{% endif %}" href="{% url 'top-sellers' %}">
+        <span style="font-weight: bold;">Топ продавцов</span>
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="{% url 'advertisement-post' %}">
+    <a class="nav-link {% if main == 'adv_post' %}active{% endif %}" href="{% url 'advertisement-post' %}">
       <span style="font-weight: bold;">Разместить объявление</span>
     </a>
   </li>
     {% if not user.is_authenticated %}
   <li class="nav-item">
-    <a class="nav-link" href="{% url 'register' %}">
+    <a class="nav-link {% if main == 'register' %}active{% endif %}" href="{% url 'register' %}">
       <span style="font-weight: bold;">Регистрация</span>
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="{% url 'login' %}">
+    <a class="nav-link {% if main == 'login' %}active{% endif %}" href="{% url 'login' %}">
       <span style="font-weight: bold;">Войти</span>
     </a>
   </li>
     {% else %}
   <li class="nav-item">
-    <a class="nav-link" href="{% url 'profile' %}">
+    <a class="nav-link {% if main == 'profile' %}active{% endif %}" href="{% url 'profile' %}">
       <span style="font-weight: bold;">Профиль</span>
     </a>
   </li>

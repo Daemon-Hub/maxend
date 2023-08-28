@@ -4,13 +4,20 @@ from .forms import AdvertisementForm
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 
+
 def index(request):
-	context = dict(aidv=Advertisement.objects.all())
+	title = request.GET.get('query')
+	if title:
+		aidv = Advertisement.objects.filter(title=title)
+	else:
+		aidv = Advertisement.objects.all()
+	context = {'aidv': aidv, 'main': 'index'}
 	return render(request, 'app_advertisements/index.html', context)
 
 
 def top_sellers(request):
-	return render(request, 'app_advertisements/top-sellers.html')
+	context = {'main': 'top'}
+	return render(request, 'app_advertisements/top-sellers.html', context)
 
 
 @login_required(login_url=reverse_lazy('login'))
@@ -22,11 +29,12 @@ def advertisement_post(request):
 			return redirect('index')
 	else:
 		form = AdvertisementForm()
-
-	return render(request, 'app_advertisements/advertisement-post.html', {'form': form})
+	context = {'main': 'adv_post', 'form': form}
+	return render(request, 'app_advertisements/advertisement-post.html', context)
 
 
 def advertisement(request):
-	return render(request, 'app_advertisements/advertisement.html')
+	context = {'main': 'adv'}
+	return render(request, 'app_advertisements/advertisement.html', context)
 
 
