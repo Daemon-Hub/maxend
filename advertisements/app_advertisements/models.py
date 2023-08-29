@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib import admin
 from django.contrib.auth import get_user_model
 from django.utils.html import format_html
-
+from django.urls import reverse
 User = get_user_model()
 
 
@@ -23,6 +23,9 @@ class Advertisement(models.Model):
 
     def __str__(self):
         return f"{self.__class__.__name__}(id={self.id}, title={self.title}, price={self.price})"
+
+    def absolute_url(self):
+        return reverse("advertisement", kwargs={"pk": self.pk})
 
     @admin.display(description='Дата создания')
     def created_date(self):

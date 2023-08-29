@@ -6,5 +6,5 @@ urlpatterns = [
 	path('', index, name='index'),
 	path('top-sellers/', top_sellers, name='top-sellers'),
 	path('advertisement-post', advertisement_post, name='advertisement-post'),
-	path('advertisement/', advertisement, name='advertisement')
+	path('advertisement/<int:pk>', advertisement, name='advertisement')
 ]

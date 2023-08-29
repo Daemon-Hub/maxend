@@ -7,9 +7,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
-    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/fontello.css' %}">
     <title>{% block title %} index {% endblock %}</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      margin: 0;
+    }
+    .container {
+      flex-grow: 2;
+    }
+    footer {
+      flex: 0 0 auto;
+      margin-bottom: -100px;
+      padding: 3rem;
+    }
+  </style>
 </head>
 <body>
 <ul class="nav nav-pills sticky-top bg-white nav-fill">
@@ -54,6 +69,37 @@
 </ul>
     {% block content %}
     {% endblock %}
+<footer class="bg-primary">
+    <nav class="navbar navbar-expand-sm navbar-dark">
+      <a class="navbar-brand" href="#">Добавьте</a>
+      <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse"
+        data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
+        aria-label="Toggle navigation"></button>
+      <div class="collapse navbar-collapse" id="collapsibleNavId">
+        <ul class="navbar-nav me-auto mt-2 mt-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" href="#" aria-current="page">сюда<span
+                class="visually-hidden">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">что</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-bs-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="false">хотите</a>
+            <div class="dropdown-menu" aria-labelledby="dropdownId">
+              <a class="dropdown-item" href="#">например</a>
+              <a class="dropdown-item" href="#">ссылки на социальные сети</a>
+            </div>
+          </li>
+        </ul>
+        <form class="d-flex my-2 my-lg-0">
+          <input class="form-control me-sm-2" type="text" placeholder="Search">
+          <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </div>
+    </nav>
+  </footer>
     {% block scripts %}
         <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
     {% endblock %}
